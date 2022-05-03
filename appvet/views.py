@@ -34,7 +34,7 @@ def usuario(request):
 
 def mascota(request):
 
-    return render(request, "appvetr/mascota.html")
+    return render(request, "appvet/mascota.html")
 
 def pedido(request):
 
@@ -42,7 +42,7 @@ def pedido(request):
 
 def inicio(request):
 
-    return render(request,"AppCoder/inicio.html")
+    return render(request,"appvet/inicio.html")
 
 def buscar(request):
 
