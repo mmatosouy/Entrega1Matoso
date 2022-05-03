@@ -1,20 +1,19 @@
-import email
 from django.http import HttpResponse
 from django.shortcuts import render
-from appvet.forms import CursoFormulario, UsuarioFormulario
+from appvet.forms import UsuarioFormulario
 from appvet.models import Usuario
 
 
 def usuario(request):
 
     
-    if request.method == 'POST':    #al hacer click en enviar
+    if request.method == 'POST':    
 
-        miFormulario = UsuarioFormulario(request.POST)    #aquí llega la info del formulario 
+        miFormulario = UsuarioFormulario(request.POST)   
 
         print(miFormulario)
 
-        if miFormulario.is_valid():     #comprobar si la info es valida
+        if miFormulario.is_valid():    
 
             informacion = miFormulario.cleaned_data
 
@@ -23,11 +22,11 @@ def usuario(request):
 
             usuario.save()
 
-            return render(request, "appvet/inicio.html")  #una vez guardado, mostramos la plantilla de inicio.    
+            return render(request, "appvet/inicio.html")  
 
     else:
 
-        miFormulario = UsuarioFormulario()    #me muestra un formulario vacio
+        miFormulario = UsuarioFormulario()    
 
 
     return render(request, "appvet/usuario.html", {"miFormulario":miFormulario})
@@ -44,20 +43,22 @@ def inicio(request):
 
     return render(request,"appvet/inicio.html")
 
+def busquedaApellido(request):
+
+    return render(request, "appvet/busquedaUsuario.html")
+
 def buscar(request):
 
-    #respuesta=f"Estoy buscando la camada {request.GET['camada']}"
-
+    
     if request.GET['apellido']:
 
-        apellido = request.GET['apellido']      #almacenar el número de camada que estamos buscando
-        #cursos = Curso.objects.filter(camada__icontains=camada) #icontains significa que el numero que buscamos está contenido en la camada
+        apellido = request.GET['apellido']  
         usuario = Usuario.objects.filter(apellido__iexact=apellido)
 
         return render(request, "appvet/resultadosBusqueda.html", {"usuario":usuario, "apellido":apellido})
 
     else:
 
-        respuesta="No enaste vidatos."
+        respuesta="No enviaste datos."
     
     return HttpResponse(respuesta)
