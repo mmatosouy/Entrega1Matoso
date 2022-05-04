@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from appvet.forms import UsuarioFormulario
-from appvet.models import Usuario
+from appvet.forms import MascotaFormulario, PedidoFormulario, UsuarioFormulario
+from appvet.models import Mascota, Pedido, Usuario
 
 
 def usuario(request):
@@ -33,11 +33,58 @@ def usuario(request):
 
 def mascota(request):
 
-    return render(request, "appvet/mascota.html")
+    
+    if request.method == 'POST':    
+
+        miFormulario = MascotaFormulario(request.POST)   
+
+        print(miFormulario)
+
+        if miFormulario.is_valid():    
+
+            informacion = miFormulario.cleaned_data
+
+            mascota = Mascota(nombre=informacion['nombre'], raza=informacion['raza'], 
+            nacimiento=informacion['nacimiento'], descripcion=informacion['descripcion']) 
+
+            mascota.save() 
+
+            return render(request, "appvet/mascotaFormulario.html")  
+
+    else:
+
+        miFormulario = MascotaFormulario()    
+
+
+    return render(request, "appvet/mascota.html", {"miFormulario":miFormulario})
+
 
 def pedido(request):
 
-    return render(request, "appvet/pedido.html")
+    
+    if request.method == 'POST':    
+
+        miFormulario = PedidoFormulario(request.POST)   
+
+        print(miFormulario)
+
+        if miFormulario.is_valid():    
+
+            informacion = miFormulario.cleaned_data
+
+            pedido = Pedido(nombre=informacion['nombre'], email=informacion['email'], 
+            telefono=informacion['telefono'], pedido=informacion['pedido']) 
+
+            pedido.save() 
+
+            return render(request, "appvet/inicio.html")  
+
+    else:
+
+        miFormulario = PedidoFormulario()    
+
+
+    return render(request, "appvet/pedido.html", {"miFormulario":miFormulario})
 
 def inicio(request):
 
