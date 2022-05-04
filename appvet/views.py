@@ -17,7 +17,7 @@ def usuario(request):
 
             informacion = miFormulario.cleaned_data
 
-            usuario = Usuario(nombre=informacion['nombre'], apellido=informacion['apellodp'], 
+            usuario = Usuario(nombre=informacion['nombre'], apellido=informacion['apellido'], 
             email=informacion['email'], telefono=informacion['telefono'], direccion=informacion['direccion'])  #creando un curso (modelo) usando la info recibida
 
             usuario.save()
