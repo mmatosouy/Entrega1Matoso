@@ -1,8 +1,6 @@
 # Entrega1Matoso
 Entrega intermedia de proyecto Final CoderHouse
 
-
-
 La entrega 1 del proyecto final es una pagina de una veterinaria, en ella el visitante podra registrarse como usuario, registrar a su mascota y realizar un pedido de productos.
 
 En cada una de estas funciones el visitante debera completar un formulario:

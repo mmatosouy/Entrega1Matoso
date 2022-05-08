@@ -49,7 +49,7 @@ def mascotas(request):
 
             mascota.save() 
 
-            return render(request, "appvet/mascotaFormulario.html")  
+            return render(request, "appvet/inicio.html")  
 
     else:
 
