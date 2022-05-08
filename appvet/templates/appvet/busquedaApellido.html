@@ -7,20 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <p>Los usuarios con apellido {{apellido}} son:</p>
+    <form action="/appvet/" method="GET">
 
-    {% if usuario %} 
+        <input type="text" name="apellido" id="apellido">
 
-    <ul>
-    {% for x in usuario %}
+        <input type="submit" value="Buscar">
 
-        <li>{{x.nombre}}</li>
-        <li>{{x.apellido}}</li>
-
-    {% endfor %}
-
-    </ul>
-
-    {% endif %}    
+    </form>
 </body>
 </html>

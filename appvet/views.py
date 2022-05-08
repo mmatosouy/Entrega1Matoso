@@ -31,7 +31,7 @@ def usuario(request):
 
     return render(request, "appvet/usuario.html", {"miFormulario":miFormulario})
 
-def mascota(request):
+def mascotas(request):
 
     
     if request.method == 'POST':    
@@ -92,7 +92,7 @@ def inicio(request):
 
 def busquedaApellido(request):
 
-    return render(request, "appvet/busquedaUsuario.html")
+    return render(request, "appvet/busquedaApellido.html")
 
 def buscar(request):
 
