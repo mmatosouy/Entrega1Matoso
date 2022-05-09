@@ -14,7 +14,7 @@ class Mascota(models.Model):
     nacimiento = models.DateField()
     descripcion = models.TextField()
 
-class Pedido(models.Model):
+class Pedidos(models.Model):
     nombre = models.CharField(max_length=100)
     email = models.EmailField()
     telefono = models.CharField(max_length=20)

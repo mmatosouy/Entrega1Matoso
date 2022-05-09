@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from appvet.forms import MascotaFormulario, PedidoFormulario, UsuarioFormulario
-from appvet.models import Mascota, Pedido, Usuario
+from appvet.forms import MascotaFormulario, pedidosFormulario, UsuarioFormulario
+from appvet.models import Mascota, Pedidos, Usuario
 
 
 def usuario(request):
@@ -59,12 +59,12 @@ def mascotas(request):
     return render(request, "appvet/mascota.html", {"miFormulario":miFormulario})
 
 
-def pedido(request):
+def pedidos(request):
 
     
     if request.method == 'POST':    
 
-        miFormulario = PedidoFormulario(request.POST)   
+        miFormulario = pedidosFormulario(request.POST)   
 
         print(miFormulario)
 
@@ -72,40 +72,38 @@ def pedido(request):
 
             informacion = miFormulario.cleaned_data
 
-            pedido = Pedido(nombre=informacion['nombre'], email=informacion['email'], 
-            telefono=informacion['telefono'], pedido=informacion['pedido']) 
+            pedidos = Pedidos(nombre=informacion['nombre'], email=informacion['email'], telefono=informacion['telefono'], pedido=informacion['pedido']) 
 
-            pedido.save() 
+            pedidos.save() 
 
             return render(request, "appvet/inicio.html")  
 
     else:
 
-        miFormulario = PedidoFormulario()    
+        miFormulario = pedidosFormulario()    
 
 
-    return render(request, "appvet/pedido.html", {"miFormulario":miFormulario})
+    return render(request, "appvet/pedidos.html", {"miFormulario":miFormulario})
 
 def inicio(request):
 
     return render(request,"appvet/inicio.html")
 
-def busquedaApellido(request):
+def busquedaPedido(request):
 
-    return render(request, "appvet/busquedaApellido.html")
+    return render(request, "appvet/busquedaPedido.html")
 
 def buscar(request):
 
-    
-    if request.GET['apellido']:
+    if request.GET['pedido']:
 
-        apellido = request.GET['apellido']  
-        usuario = Usuario.objects.filter(apellido__iexact=apellido)
+        pedido = request.GET['pedido']
+        Pedidos = Pedidos.objects.filter(Pedidos_icontains=pedido)
 
-        return render(request, "appvet/resultadosBusqueda.html", {"usuario":usuario, "apellido":apellido})
+        return render(request, "appvet/resultadosBusqueda.html", {"Pedidos":Pedidos, "pedido":pedido})
 
     else:
 
-        respuesta="No enviaste datos."
+        respuesta = "No enviaste el dato correcto"
     
     return HttpResponse(respuesta)

@@ -7,19 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    <p> Estamos buscando el {{pedido}}:</p>
+    <form action="/appvet/buscar" method="GET">
 
-    {% if Pedidos %} 
+        <input type="text" name="pedido" id="pedido">
 
-    <ul>
-    {% for Pedidos in Pedidos %}
+        <input type="submit" value="Buscar">
 
-        <li>{{x.pedido}}</li>
-
-    {% endfor %}
-
-    </ul>
-
-    {% endif %}    
+    </form>
 </body>
 </html>

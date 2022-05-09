@@ -15,7 +15,7 @@ class MascotaFormulario(forms.Form):
     nacimiento= forms.DateField()
     descripcion = forms.CharField()
    
-class PedidoFormulario(forms.Form):
+class pedidosFormulario(forms.Form):
 
     nombre = forms.CharField()
     email = forms.EmailField()
