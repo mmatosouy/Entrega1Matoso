@@ -19,6 +19,6 @@ Tambien es posible realizar una busqueda de los usuarios registrados mediante su
 
 http://127.0.0.1:8000/appvet/busquedaApellido
 
-Por ultimo el acceso de administrador es :
+El acceso de administrador es :
 usuario: admin
 clave: admin123456
