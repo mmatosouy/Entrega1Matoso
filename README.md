@@ -12,3 +12,7 @@ Para registrar a una mascota se debe acceder, mediante el boton Registro Mascota
 Para realizar un pedido se debe acceder, mediante el boton Pedido, al formulario en la URL http://127.0.0.1:8000/appvet/pedido/ y completar: Nombre Email Telefono Pedido
 
 Tambien es posible realizar una busqueda de los usuarios registrados mediante su apellido.
+
+El acceso de administrador es :
+usuario: admin
+clave: admin123456

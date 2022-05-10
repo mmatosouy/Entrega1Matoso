@@ -96,8 +96,9 @@ def busquedaApellido(request):
 
 def buscar(request):
 
-    
-    if request.GET['apellido']:
+    #respuesta = f"Estoy buscando usuarios con el apellido: {request.GET['apellido']}"
+   
+    if request.GET["apellido"]:
 
         apellido = request.GET['apellido']  
         usuario = Usuarios.objects.filter(apellido__iexact=apellido)
@@ -108,4 +109,4 @@ def buscar(request):
 
         respuesta="No enviaste datos."
     
-    return render(request, "appvet/inicio.html", {"respuesta".respuesta})
+    return HttpResponse(respuesta)
