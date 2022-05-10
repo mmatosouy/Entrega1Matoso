@@ -7,4 +7,4 @@ admin.site.register(Usuarios)
 admin.site.register(Mascotas)
 admin.site.register(Pedidos)
 
-# Register your models here.
+

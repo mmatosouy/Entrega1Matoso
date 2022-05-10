@@ -108,4 +108,4 @@ def buscar(request):
 
         respuesta="No enviaste datos."
     
-    return HttpResponse(respuesta)
+    return render(request, "appvet/inicio.html", {"respuesta".respuesta})
