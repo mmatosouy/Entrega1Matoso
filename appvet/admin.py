@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Usuario
-from .models import Mascota
+from .models import Usuarios
+from .models import Mascotas
+from .models import Pedidos
 
-
-admin.site.register(Usuario)
-admin.site.register(Mascota)
-
+admin.site.register(Usuarios)
+admin.site.register(Mascotas)
+admin.site.register(Pedidos)
 
 # Register your models here.

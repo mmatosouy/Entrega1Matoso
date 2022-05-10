@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from appvet.forms import MascotaFormulario, PedidoFormulario, UsuarioFormulario
-from appvet.models import Mascota, Pedido, Usuario
+from appvet.models import Mascotas, Pedidos, Usuarios
 
 
 def usuario(request):
@@ -17,7 +17,7 @@ def usuario(request):
 
             informacion = miFormulario.cleaned_data
 
-            usuario = Usuario(nombre=informacion['nombre'], apellido=informacion['apellido'], 
+            usuario = Usuarios(nombre=informacion['nombre'], apellido=informacion['apellido'], 
             email=informacion['email'], telefono=informacion['telefono'], direccion=informacion['direccion'])  #creando un curso (modelo) usando la info recibida
 
             usuario.save()
@@ -31,7 +31,7 @@ def usuario(request):
 
     return render(request, "appvet/usuario.html", {"miFormulario":miFormulario})
 
-def mascotas(request):
+def mascota(request):
 
     
     if request.method == 'POST':    
@@ -44,7 +44,7 @@ def mascotas(request):
 
             informacion = miFormulario.cleaned_data
 
-            mascota = Mascota(nombre=informacion['nombre'], raza=informacion['raza'], 
+            mascota = Mascotas(nombre=informacion['nombre'], raza=informacion['raza'], 
             nacimiento=informacion['nacimiento'], descripcion=informacion['descripcion']) 
 
             mascota.save() 
@@ -72,7 +72,7 @@ def pedido(request):
 
             informacion = miFormulario.cleaned_data
 
-            pedido = Pedido(nombre=informacion['nombre'], email=informacion['email'], 
+            pedido = Pedidos(nombre=informacion['nombre'], email=informacion['email'], 
             telefono=informacion['telefono'], pedido=informacion['pedido']) 
 
             pedido.save() 
@@ -100,7 +100,7 @@ def buscar(request):
     if request.GET['apellido']:
 
         apellido = request.GET['apellido']  
-        usuario = Usuario.objects.filter(apellido__iexact=apellido)
+        usuario = Usuarios.objects.filter(apellido__iexact=apellido)
 
         return render(request, "appvet/resultadosBusqueda.html", {"usuario":usuario, "apellido":apellido})
 
