@@ -192,7 +192,6 @@ def mascota(request):
 
 #LO REFERENTE A LOS PEDIDOS
 
-@login_required
 def pedido(request):
 
     
