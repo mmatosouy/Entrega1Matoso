@@ -59,6 +59,8 @@ def login_request(request):
 
 
 
+# LO REFERENTE AL USUARIO
+
 def usuario(request):
 
     
@@ -113,65 +115,6 @@ def editarUsuario(request):
 
     return render(request, "appvet/editarUsuario.html",{'miFormulario':miFormulario, 'usuario':usuario.username})
 
-def mascota(request):
-
-    
-    if request.method == 'POST':    
-
-        miFormulario = MascotaFormulario(request.POST)   
-
-        print(miFormulario)
-
-        if miFormulario.is_valid():    
-
-            informacion = miFormulario.cleaned_data
-
-            mascota = Mascotas(nombre=informacion['nombre'], raza=informacion['raza'], 
-            nacimiento=informacion['nacimiento'], descripcion=informacion['descripcion']) 
-
-            mascota.save() 
-
-            return render(request, "appvet/mascotaFormulario.html")  
-
-    else:
-
-        miFormulario = MascotaFormulario()    
-
-
-    return render(request, "appvet/mascota.html", {"miFormulario":miFormulario})
-
-
-def pedido(request):
-
-    
-    if request.method == 'POST':    
-
-        miFormulario = PedidoFormulario(request.POST)   
-
-        print(miFormulario)
-
-        if miFormulario.is_valid():    
-
-            informacion = miFormulario.cleaned_data
-
-            pedido = Pedidos(nombre=informacion['nombre'], email=informacion['email'], 
-            telefono=informacion['telefono'], pedido=informacion['pedido']) 
-
-            pedido.save() 
-
-            return render(request, "appvet/inicio.html")  
-
-    else:
-
-        miFormulario = PedidoFormulario()    
-
-
-    return render(request, "appvet/pedido.html", {"miFormulario":miFormulario})
-
-def inicio(request):
-
-    return render(request,"appvet/inicio.html")
-
 def busquedaApellido(request):
 
     return render(request, "appvet/busquedaApellido.html")
@@ -190,7 +133,6 @@ def buscar(request):
         respuesta="No enviaste datos."
     
     return HttpResponse(respuesta)
-
 
 class UsuarioList(LoginRequiredMixin, ListView):
 
@@ -218,4 +160,75 @@ class UsuarioDelete(DeleteView):
 
     model = usuario
     success_url = "/appvet/usuario/lista"
+
+#LO REFERENTE A LAS MACOTAS
+
+def mascota(request):
+
+    
+    if request.method == 'POST':    
+
+        miFormulario = MascotaFormulario(request.POST)   
+
+        print(miFormulario)
+
+        if miFormulario.is_valid():    
+
+            informacion = miFormulario.cleaned_data
+
+            mascota = Mascotas(nombre=informacion['nombre'], raza=informacion['raza'], 
+            nacimiento=informacion['nacimiento'], descripcion=informacion['descripcion']) 
+
+            mascota.save() 
+
+            return render(request, "appvet/mascotaFormulario.html")  
+
+    else:
+
+        miFormulario = MascotaFormulario()    
+
+
+    return render(request, "appvet/mascota.html", {"miFormulario":miFormulario})
+
+#LO REFERENTE A LOS PEDIDOS
+
+@login_required
+def pedido(request):
+
+    
+    if request.method == 'POST':    
+
+        miFormulario = PedidoFormulario(request.POST)   
+
+        print(miFormulario)
+
+        if miFormulario.is_valid():    
+
+            informacion = miFormulario.cleaned_data
+
+            pedido = Pedidos(nombre=informacion['nombre'], email=informacion['email'], 
+            telefono=informacion['telefono'], pedido=informacion['pedido']) 
+
+            pedido.save() 
+
+            return render(request, "appvet/inicio.html")  
+
+    else:
+
+        miFormulario = PedidoFormulario()   
+
+    dict1={"miFormulario":miFormulario} 
+
+    return render(request, "appvet/pedido.html", dict1)
+
+def inicio(request):
+
+    return render(request,"appvet/inicio.html")
+
+def aboutus(request):
+
+    return render(request,"appvet/aboutus.html")
+
+
+
 

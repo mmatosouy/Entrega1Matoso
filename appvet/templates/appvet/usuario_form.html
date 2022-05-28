@@ -4,25 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Usuarios</title>
 </head>
 <body>
-    {% if miFormulario.errors %}
+    
+    <form method="post">{% csrf_token %}
 
-    <p style="color: red">Datos incorrectos</p>
-
-    {% endif %} 
-
-    <form action="" method="POST"> {% csrf_token %}
-
-        <table>
-
-            {{miFormulario.as_table}}
-
-        </table>
-
+        {{ form.as_p }}
         <input type="submit" value="Enviar">
 
     </form>
+
 </body>
 </html>
