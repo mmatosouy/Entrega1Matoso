@@ -229,6 +229,17 @@ def aboutus(request):
 
     return render(request,"appvet/aboutus.html")
 
+def contact(request):
+
+    return render(request,"appvet/contact.html")
+
+def termsofuse(request):
+
+    return render(request,"appvet/termsofuse.html")
+
+def privacy(request):
+
+    return render(request,"appvet/privacy.html")
 
 
 
