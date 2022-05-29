@@ -9,6 +9,7 @@ class UsuarioFormulario(forms.Form):
     email = forms.EmailField()
     telefono = forms.CharField()
     direccion = forms.CharField()
+    
 
 class MascotaFormulario(forms.Form):
 

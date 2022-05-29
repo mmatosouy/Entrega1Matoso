@@ -1,0 +1,42 @@
+{% extends "appvet/padre.html" %}
+    
+
+
+{% block contenidoModificable %}
+    <h1>Pedidos TuVeterinaria</h1>
+{% endblock %}
+
+{% block contenido2 %}
+
+
+
+    
+    <a href="{% url 'New' %}">Crear</a>
+
+    <ul>
+
+        {% for Pedidos in object_list %} 
+
+        <li>
+
+            <p>Nombre: {{Pedidos.nombre}}</p>
+
+            <p>
+
+                <a href="{% url 'Detail' Pedido.id %}">Ver</a>
+                <a href="{% url 'Edit' Pedido.id %}">Editar</a>
+                <a href="{% url 'Delete' Pedido.id %}">Borrar</a>
+
+
+
+            </p>
+
+
+        </li>
+
+        {% endfor %}
+
+
+    </ul>
+
+{% endblock %}

@@ -4,8 +4,10 @@
 
 
 {% block contenidoModificable %}
-
 <body>
-    <h3>Acabas de cerrar tu sesion.</h3>
+   {% for p in Usuarios %}
+        <li>{{p}}</li>
+    
+    {% endfor %}
 </body>
 {% endblock %}

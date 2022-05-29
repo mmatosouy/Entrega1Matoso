@@ -119,6 +119,7 @@ def busquedaApellido(request):
 
     return render(request, "appvet/busquedaApellido.html")
 
+@login_required
 def buscar(request):
 
     if request.GET["apellido"]:
@@ -134,35 +135,45 @@ def buscar(request):
     
     return HttpResponse(respuesta)
 
-class UsuarioList(LoginRequiredMixin, ListView):
+def leerUsuarios(request):
 
-    model = usuario
-    template_name = "appvet/listaUsuario.html"
+    Usuario = Usuarios.objects.all()
 
-class UsuarioDetalle(DetailView):
+    contexto = {"usuarios":usuarios}
 
-    model = usuario
-    template_name = "appvet/usuarioDetalle.html"
+    return render (request, "appvet/leerUsuarios.html", contexto)
 
-class UsuarioCreacion(CreateView):
 
-    model = usuario
-    success_url = "/appvet/usuario/lista"
+
+class PedidoList(LoginRequiredMixin, ListView):
+
+    model = Pedidos
+    template_name = "appvet/listaPedidos.html"
+
+class PedidoDetalle(DetailView):
+
+    model = Pedidos
+    template_name = "appvet/pedidoDetalle.html"
+
+class PedidoCreacion(CreateView):
+
+    model = Pedidos
+    success_url = "/appvet/pedidos/lista"
     fields = ['nombre', 'appellido', 'email']
 
-class UsuarioUpdate(UpdateView):
+class PedidoUpdate(UpdateView):
 
     model = usuario
-    success_url = "/appvet/usuario/lista"
+    success_url = "/appvet/pedidos/lista"
     fields = ['nombre', 'appellido', 'email']
 
-class UsuarioDelete(DeleteView):
+class PedidoDelete(DeleteView):
 
     model = usuario
-    success_url = "/appvet/usuario/lista"
+    success_url = "/appvet/pedidos/lista"
 
 #LO REFERENTE A LAS MACOTAS
-
+@login_required
 def mascota(request):
 
     
@@ -176,7 +187,7 @@ def mascota(request):
 
             informacion = miFormulario.cleaned_data
 
-            mascota = Mascotas(nombre=informacion['nombre'], raza=informacion['raza'], 
+            mascota = Mascotas(dueño=informacion['dueño'], nombre=informacion['nombre'], raza=informacion['raza'], 
             nacimiento=informacion['nacimiento'], descripcion=informacion['descripcion']) 
 
             mascota.save() 
@@ -185,13 +196,15 @@ def mascota(request):
 
     else:
 
-        miFormulario = MascotaFormulario()    
+        miFormulario = MascotaFormulario()   
 
+    dict1={"miFormulario":miFormulario}
 
-    return render(request, "appvet/mascota.html", {"miFormulario":miFormulario})
+    return render(request, "appvet/mascota.html", dict1)
 
 #LO REFERENTE A LOS PEDIDOS
 
+@login_required
 def pedido(request):
 
     
@@ -216,9 +229,9 @@ def pedido(request):
 
         miFormulario = PedidoFormulario()   
 
-    dict1={"miFormulario":miFormulario} 
+    dict2={"miFormulario":miFormulario} 
 
-    return render(request, "appvet/pedido.html", dict1)
+    return render(request, "appvet/pedido.html", dict2)
 
 def inicio(request):
 
